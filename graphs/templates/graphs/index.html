@@ -1,4 +1,15 @@
 {% extends 'graphs/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static "graphs/css/metricsgraphics.css" %}" >
+{% endblock %}
+
 {% block content %}
-foo
+    <div id="chart"></div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="{% static "graphs/js/metricsgraphics.js" %}"></script>
+    <script src="{% static "graphs/js/main.js" %}"></script>
 {% endblock %}

@@ -3,12 +3,12 @@
         <title>
             Thesis-o-meter
         </title>
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static "graphs/css/normalize.css" %}" >
-        <link rel="stylesheet" type="text/css" href="{% static "graphs/css/skeleton.css" %}" >
 
+        {% block head %}
+        {% endblock %}
     </head>
     <body>
+        <nav class="navbar" ></nav>
         <div class="container">
 
             <div id="main" role="main">
@@ -16,4 +16,7 @@
                 {% endblock %}
             </div>
         </div>
+    {% block scripts %}
+    {% endblock %}
+    </body>
 </html>
