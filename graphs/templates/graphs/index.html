@@ -6,6 +6,15 @@
 
 {% block content %}
     <div id="chart"></div>
+
+    {% if user.is_authenticated %}
+        <div id="formblock">
+            <form id="count_form" action="{% url 'graphs:count' %}" method="post">{% csrf_token %}
+                {{ form }}
+                <button type="submit" class="save btn">Post</button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block scripts %}

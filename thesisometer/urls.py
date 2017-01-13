@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r"^graphs/", include('graphs.urls')),
+    url(r"^graphs/", include('graphs.urls', namespace='graphs')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))

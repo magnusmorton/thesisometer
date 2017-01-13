@@ -8,5 +8,8 @@ router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     url(r'api/', include(router.urls)),
-    url(r'^$', views.index, name="index")
+    url(r'^$', views.index, name="index"),
+    url(r'token/', views.token, name="token"),
+    url(r'clientscript/', views.client_script, name="client_script"),
+    url(r'count', views.count, name="count")
 ]
