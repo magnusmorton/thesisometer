@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -6,4 +7,5 @@ from django.contrib.auth.models import User
 
 class WordCount(models.Model):
     count = models.IntegerField(default=0)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(default=datetime.date.today)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="counts")

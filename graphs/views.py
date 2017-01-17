@@ -5,8 +5,9 @@ from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from rest_framework.authtoken.models import Token
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, WordCountSerializer
 from .forms import WordCountForm
+from .models import WordCount
 
 # Create your views here.
 
@@ -20,8 +21,13 @@ def index(request):
 def count(request):
     if request.method == "POST":
         form = WordCountForm(request.POST)
+        if form.is_valid():
+            wc = form.save(commit=False)
+            wc.user = request.user
+            wc.save()
+            return redirect('graphs:index')
     else:
-        redirect('index')
+        return redirect('graphs:index')
 
 @login_required
 def token(request):
@@ -37,3 +43,8 @@ def client_script(request):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by("-username")
     serializer_class = UserSerializer
+
+
+class WordCountViewSet(viewsets.ModelViewSet):
+    queryset = WordCount.objects.all()
+    serializer_class = WordCountSerializer

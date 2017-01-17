@@ -5,6 +5,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'word_counts', views.WordCountViewSet)
 
 urlpatterns = [
     url(r'api/', include(router.urls)),
