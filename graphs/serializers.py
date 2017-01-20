@@ -3,18 +3,17 @@ from .models import WordCount
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    counts = serializers.PrimaryKeyRelatedField(many=True, queryset=WordCount.objects.all())
+class WordCountSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = WordCount
+        fields = ('count', 'date')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    #counts = serializers.HyperlinkedRelatedField(many=True, view_name="graphs:wordcount-detail", queryset=WordCount.objects.all())
+    counts = WordCountSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
         fields = ('username', 'counts')
-
-
-class WordCountSerializer(serializers.HyperlinkedModelSerializer):
-    #user = serializers.ReadOnlyField(source="user.username")
-
-    class Meta:
-        model = WordCount
-        fields = ('count', 'date',)# 'user')
