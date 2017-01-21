@@ -1,9 +1,8 @@
 
 function drawGraph(data) {
-    console.log(data[0]);
     counts = data[0].counts;
-    console.log(counts);
     MG.convert.date(counts, "date");
+
     MG.data_graphic({
         title: "Thesis Progress",
         data:counts,

@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
+from subprocess import call
+import tempfile
+import os
+import stat
 
 from .models import WordCount
 # Create your tests here.
@@ -10,7 +14,7 @@ from .models import WordCount
 
 class CountTestCase(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user("bob")
+        self.user = User.objects.create_user("bob", password="bob")
         self.client = APIClient()
         self.token = Token.objects.create(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
@@ -28,6 +32,18 @@ class CountTestCase(TestCase):
         WordCount(count=500, date="2017-01-20", user=self.user).save()
         counts = WordCount.objects.filter(date="2017-01-20")
         self.assertEqual(len(counts), 1)
+
+    def test_script_adds_count(self):
+        self.client.login(username="bob", password="bob")
+        response = self.client.get("/graphs/clientscript/")
+        with tempfile.NamedTemporaryFile(suffix="sh") as f:
+            f.write(response.content)
+            f.seek(0)
+            st = os.stat(f.name)
+            print(response.content)
+            os.chmod(f.name, st.st_mode | stat.S_IEXEC)
+            call([f.name, "420"])
+        self.assertEqual(len(WordCount.objects.all()), 1)
 
     def test_can_make_multiple_counts(self):
         WordCount(count=420, date="2017-01-20", user=self.user).save()

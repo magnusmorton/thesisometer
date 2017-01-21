@@ -41,7 +41,8 @@ def token(request):
 @login_required
 def client_script(request):
     u_token = Token.objects.get_or_create(user=request.user)
-    return render(request, 'graphs/thesis_graph.sh', {'token': u_token[0].key}, content_type="text/x-shellscript")
+    return render(request, 'graphs/thesis_graph.sh', {'token': u_token[0].key, 'host': request.get_host()},
+                  content_type="text/plain")
 
 
 class UserViewSet(viewsets.ModelViewSet):

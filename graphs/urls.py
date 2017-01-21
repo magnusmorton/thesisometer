@@ -7,12 +7,11 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'wordcount', views.WordCountViewSet)
 
-print(router.urls)
 
 urlpatterns = [
-    url(r'api/', include(router.urls)),
+    url(r'api/', include(router.urls, namespace="api")),
     url(r'^$', views.index, name="index"),
     url(r'token/', views.token, name="token"),
-    url(r'clientscript/', views.client_script, name="client_script"),
+    url(r'clientscript\.sh$', views.client_script, name="client_script"),
     url(r'count', views.count, name="count")
 ]
