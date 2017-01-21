@@ -33,18 +33,6 @@ class CountTestCase(TestCase):
         counts = WordCount.objects.filter(date="2017-01-20")
         self.assertEqual(len(counts), 1)
 
-    def test_script_adds_count(self):
-        self.client.login(username="bob", password="bob")
-        response = self.client.get("/graphs/clientscript/")
-        with tempfile.NamedTemporaryFile(suffix="sh") as f:
-            f.write(response.content)
-            f.seek(0)
-            st = os.stat(f.name)
-            print(response.content)
-            os.chmod(f.name, st.st_mode | stat.S_IEXEC)
-            call([f.name, "420"])
-        self.assertEqual(len(WordCount.objects.all()), 1)
-
     def test_can_make_multiple_counts(self):
         WordCount(count=420, date="2017-01-20", user=self.user).save()
         WordCount(count=500, date="2017-01-21", user=self.user).save()
