@@ -15,7 +15,7 @@ function drawGraph(data) {
         title: "Thesis Progress",
         data:graph_data,
         target: '#chart',
-        width: 800,
+        width: 1000,
         height: 600,
         right: 100,
         x_accessor: "date",

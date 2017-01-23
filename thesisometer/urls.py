@@ -22,9 +22,9 @@ from .views import GraphsRedirectView
 urlpatterns = [
     url(r"^graphs/", include('graphs.urls', namespace='graphs')),
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/register/$', GraphsRedirectView.as_view(), name='regisration_register'),
-    url(r'^register/closed/$', TemplateView.as_view(template_name='registration/registration_closed.html'),
+    url(r'^accounts/register/$', GraphsRedirectView.as_view(), name='registration_register'),
+    url(r'^accounts/register/closed/$', TemplateView.as_view(template_name='registration/registration_closed.html'),
                           name='registration_disallowed'),
-    url(r'', include('registration.auth_urls')),
+    url(r'^accounts/', include('registration.auth_urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

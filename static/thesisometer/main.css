@@ -1,0 +1,12 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.navbar ul {
+    list-style: none;
+}
+
+.navbar li {
+    padding: 0.5rem;
+    display: inline;
+}
