@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
-from subprocess import call
-import tempfile
-import os
-import stat
 
 from .models import WordCount
 # Create your tests here.

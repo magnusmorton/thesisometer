@@ -1,17 +1,28 @@
 
 function drawGraph(data) {
-    counts = data[0].counts;
-    MG.convert.date(counts, "date");
+    var labels = [];
+    var graph_data = [];
+    data.forEach(function (el) {
+        console.log(el);
+        labels.push(el.username);
+        graph_data.push(el.counts);
+    });
+    for (var i=0; i < graph_data.length; i++) {
+       graph_data[i] = MG.convert.date(graph_data[i], "date");
+    }
 
     MG.data_graphic({
         title: "Thesis Progress",
-        data:counts,
+        data:graph_data,
         target: '#chart',
-        width: 600,
-        height: 400,
-        right: 40,
+        width: 800,
+        height: 600,
+        right: 100,
         x_accessor: "date",
-        y_accessor: "count"
+        y_accessor: "count",
+        missing_text: "No data",
+        show_missing_background: true,
+        legend: labels
     });
 
 
