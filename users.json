@@ -1,0 +1,38 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$30000$wKEimnNcueEp$8dSyN1qPskg2TS8FAt6s65APz7/9Z/1atlvXMCAS48w=",
+        "last_login": "2017-01-20T23:18:05.832Z",
+        "is_superuser": true,
+        "username": "magnus",
+        "first_name": "",
+        "last_name": "",
+        "email": "j.morton.2@research.gla.ac.uk",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2017-01-09T22:29:25.716Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$30000$jIFkA8CoM3ym$4SxqtwN9RTRX0Kc/6iO+kjokMjGDKPR56YJsQB0sBTU=",
+        "last_login": "2017-01-20T17:22:12.588Z",
+        "is_superuser": false,
+        "username": "test",
+        "first_name": "",
+        "last_name": "",
+        "email": "test@test.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2017-01-20T17:21:50.661Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

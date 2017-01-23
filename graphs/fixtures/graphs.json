@@ -1,0 +1,65 @@
+[
+  {
+    "model": "graphs.wordcount",
+    "pk": 1,
+    "fields": {
+      "count": 300,
+      "date": "2017-01-19",
+      "user": 1
+    }
+  },
+  {
+    "model": "graphs.wordcount",
+    "pk": 2,
+    "fields": {
+      "count": 420,
+      "date": "2017-01-20",
+      "user": 1
+    }
+  },
+  {
+    "model": "graphs.wordcount",
+    "pk": 3,
+    "fields": {
+      "count": 430,
+      "date": "2017-01-23",
+      "user": 1
+    }
+  },
+  {
+    "model": "graphs.wordcount",
+    "pk": 4,
+    "fields": {
+      "count": 1000,
+      "date": "2017-02-01",
+      "user": 1
+    }
+  },
+  {
+    "model": "graphs.wordcount",
+    "pk": 5,
+    "fields": {
+      "count": 30,
+      "date": "2017-01-19",
+      "user": 2
+    }
+  },
+  {
+    "model": "graphs.wordcount",
+    "pk": 6,
+    "fields": {
+      "count": 100,
+      "date": "2017-01-25",
+      "user": 2
+    }
+  },
+  {
+    "model": "graphs.wordcount",
+    "pk": 7,
+    "fields": {
+      "count": 250,
+      "date": "2017-02-01",
+      "user": 2
+    }
+  }
+]
