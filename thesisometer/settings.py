@@ -128,7 +128,7 @@ STATICFILES_DIRS = [
 ]
 
 # Registration etc.
-LOGIN_REDIRECT_URL = '/graphs/'
+LOGIN_REDIRECT_URL = "graphs:count"
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
