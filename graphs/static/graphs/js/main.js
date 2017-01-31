@@ -3,7 +3,6 @@ function drawGraph(data) {
     var labels = [];
     var graph_data = [];
     data.forEach(function (el) {
-        console.log(el);
         labels.push(el.username);
         graph_data.push(el.counts);
     });
