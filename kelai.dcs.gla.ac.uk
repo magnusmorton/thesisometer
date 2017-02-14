@@ -10,6 +10,14 @@
 
 	ServerAdmin webmaster@localhost
 	ServerName kelai.dcs.gla.ac.uk
+	
+	Alias /static/ /users/magnus/thesisometer/thesisometer/static/
+	
+	<Directory /users/magnus/thesisometer/thesisometer/static>
+		Require all granted
+	</Directory>
+
+ 
 	WSGIScriptAlias / /users/magnus/thesisometer/thesisometer/wsgi.py
 
 	WSGIPythonPath /users/magnus/thesisometer/thesisometer
