@@ -11,7 +11,7 @@
     <body>
         <nav class="navbar" >
             <ul class="navlist">
-                <li><a href="{% url "graphs:count" %}">Home</a></li>
+                <li><a href="{% url "graphs:index" %}">Home</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url "auth_logout" %}">Logout</a></li>
                     <li><a href="{% url "graphs:client_script" %}">Bash Script</a></li>
