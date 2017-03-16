@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from .serializers import UserSerializer, WordCountSerializer
 from .forms import WordCountForm
 from .models import WordCount
+import django_filters.rest_framework as filters
 
 # Create your views here.
 
@@ -50,11 +51,20 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     http_method_names = ['get', 'head', 'options']
 
+class WordCountFilter(filters.FilterSet):
+    class Meta:
+        model = WordCount
+        fields = {
+            'date': ['gt']
+        }
+
 
 class WordCountViewSet(viewsets.ModelViewSet):
     queryset = WordCount.objects.all()
     serializer_class = WordCountSerializer
     permission_classes = permissions.IsAuthenticatedOrReadOnly,
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = WordCountFilter
 
     def create(self, request):
         serializer = WordCountSerializer(data=request.data)
