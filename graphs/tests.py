@@ -1,3 +1,4 @@
+from datetime import date
 from django.test import TestCase
 from django.contrib.auth.models import User
 from rest_framework import status
@@ -38,8 +39,31 @@ class CountTestCase(TestCase):
     def test_filtering_reduces_number_of_counts(self):
         WordCount(count=420, date="2017-01-20", user=self.user).save()
         WordCount(count=500, date="2017-01-21", user=self.user).save()
-        WordCount(count=600, date="2017-03-01", user=self.user).save()
-        response = self.client.get('/graphs/api/users/?counts__date__gt=2017-02-01', format='json')
+        WordCount(count=600, date=date.today().isoformat(), user=self.user).save()
+        response = self.client.get('/graphs/api/users/?date_range=month', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data[0]['counts']), 1)
 
+    def test_filtering_quarter(self):
+        WordCount(count=420, date="2016-01-20", user=self.user).save()
+        WordCount(count=500, date="2017-01-21", user=self.user).save()
+        WordCount(count=600, date=date.today().isoformat(), user=self.user).save()
+        response = self.client.get('/graphs/api/users/?date_range=quarter', format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data[0]['counts']), 2)
+
+    def test_filtering_year(self):
+        WordCount(count=420, date="2016-01-20", user=self.user).save()
+        WordCount(count=500, date="2017-01-21", user=self.user).save()
+        WordCount(count=600, date=date.today().isoformat(), user=self.user).save()
+        response = self.client.get('/graphs/api/users/?date_range=year', format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data[0]['counts']), 2)
+
+    def test_filtering_all(self):
+        WordCount(count=420, date="2016-01-20", user=self.user).save()
+        WordCount(count=500, date="2017-01-21", user=self.user).save()
+        WordCount(count=600, date=date.today().isoformat(), user=self.user).save()
+        response = self.client.get('/graphs/api/users/?date_range=all', format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data[0]['counts']), 3)

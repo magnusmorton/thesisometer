@@ -6,6 +6,14 @@
 
 {% block content %}
     <div id="chart"></div>
+    <div id="daterange">
+        <form id="daterange_form">
+            <input type="radio" name="range" checked />
+            <input type="radio" name="range" />
+            <input type="radio" name="range" />
+            <input type="radio" name="range" />
+        </form>
+    </div>
 
     {% if user.is_authenticated %}
         <div id="formblock">
