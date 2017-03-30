@@ -6,12 +6,20 @@
 
 {% block content %}
     <div id="chart"></div>
-    <div id="daterange">
-        <form id="daterange_form">
-            <input type="radio" name="range" checked />
-            <input type="radio" name="range" />
-            <input type="radio" name="range" />
-            <input type="radio" name="range" />
+    <div id="dater_ange">
+        <form id="date_range_form">
+            <label for="range_all">All</label>
+            <input type="radio" name="range" id="range_all" value="all" checked />
+
+
+            <label for="range_year">Past year</label>
+            <input type="radio" name="range" id="range_year" value="year"/>
+
+            <label for="range_quarter">Past quarter</label>
+            <input type="radio" name="range" id="range_quarter" value="quarter"/>
+
+            <label for="range_month">Past month</label>
+            <input type="radio" name="range" id="range_month" value="month"/>
         </form>
     </div>
 
