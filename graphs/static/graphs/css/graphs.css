@@ -1,0 +1,10 @@
+.radio_group {
+    padding: 0.5rem;
+    width: 10rem;
+    display: inline-block;
+
+}
+
+.radio_group label {
+    display: block;
+}

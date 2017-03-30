@@ -36,9 +36,7 @@ function rangeChangedHandler(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("foo");
     document.querySelectorAll('input[name="range"]').forEach(function(el) {
-        console.log(el);
         el.onchange=rangeChangedHandler;
     });
     fetchDataAndDraw("all");
@@ -51,7 +49,6 @@ function fetchDataAndDraw(range) {
     xhr.responseType = "json";
     xhr.onload = function () {
         if (xhr.status == 200) {
-            console.log(xhr.response);
             drawGraph(xhr.response);
         } else {
             console.error("XHR error: " + xhr.status);

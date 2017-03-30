@@ -2,24 +2,35 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static "graphs/css/metricsgraphics.css" %}" >
+    <link rel="stylesheet" type="text/css" href="{% static "graphs/css/graphs.css" %}" >
 {% endblock %}
 
 {% block content %}
     <div id="chart"></div>
-    <div id="dater_ange">
+    <div id="date_range">
         <form id="date_range_form">
-            <label for="range_all">All</label>
-            <input type="radio" name="range" id="range_all" value="all" checked />
+            <div class="radios" >
+                <div class="radio_group" >
+                    <label for="range_all">All</label>
 
+                        <input type="radio" name="range" id="range_all" value="all" checked />
+                </div>
 
-            <label for="range_year">Past year</label>
-            <input type="radio" name="range" id="range_year" value="year"/>
+                <div class="radio_group">
+                    <label for="range_year">Past year</label>
+                    <input type="radio" name="range" id="range_year" value="year"/>
+                </div>
 
-            <label for="range_quarter">Past quarter</label>
-            <input type="radio" name="range" id="range_quarter" value="quarter"/>
+                <div class="radio_group">
+                    <label for="range_quarter">Past quarter</label>
+                    <input type="radio" name="range" id="range_quarter" value="quarter"/>
+                </div >
 
-            <label for="range_month">Past month</label>
-            <input type="radio" name="range" id="range_month" value="month"/>
+                <div class="radio_group">
+                    <label for="range_month">Past month</label>
+                    <input type="radio" name="range" id="range_month" value="month"/>
+                </div>
+            </div>
         </form>
     </div>
 
