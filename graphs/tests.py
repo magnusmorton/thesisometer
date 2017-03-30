@@ -44,21 +44,21 @@ class CountTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data[0]['counts']), 1)
 
+    # TODO: improve these tests
+
     def test_filtering_quarter(self):
         WordCount(count=420, date="2016-01-20", user=self.user).save()
-        WordCount(count=500, date="2017-01-21", user=self.user).save()
         WordCount(count=600, date=date.today().isoformat(), user=self.user).save()
         response = self.client.get('/graphs/api/users/?date_range=quarter', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data[0]['counts']), 2)
+        self.assertEqual(len(response.data[0]['counts']), 1)
 
     def test_filtering_year(self):
         WordCount(count=420, date="2016-01-20", user=self.user).save()
-        WordCount(count=500, date="2017-01-21", user=self.user).save()
         WordCount(count=600, date=date.today().isoformat(), user=self.user).save()
         response = self.client.get('/graphs/api/users/?date_range=year', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data[0]['counts']), 2)
+        self.assertEqual(len(response.data[0]['counts']), 1)
 
     def test_filtering_all(self):
         WordCount(count=420, date="2016-01-20", user=self.user).save()
