@@ -39,7 +39,7 @@ class CountTestCase(TestCase):
         WordCount(count=420, date="2017-01-20", user=self.user).save()
         WordCount(count=500, date="2017-01-21", user=self.user).save()
         WordCount(count=600, date="2017-03-01", user=self.user).save()
-        response = self.client.get('/graphs/api/wordcount/?date__gt=2017-02-01', format='json')
+        response = self.client.get('/graphs/api/users/?counts__date__gt=2017-02-01', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data[0]['counts']), 1)
 

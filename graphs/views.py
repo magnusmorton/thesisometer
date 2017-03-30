@@ -11,7 +11,6 @@ from rest_framework.response import Response
 from .serializers import UserSerializer, WordCountSerializer
 from .forms import WordCountForm
 from .models import WordCount
-import django_filters.rest_framework as filters
 
 # Create your views here.
 
@@ -35,8 +34,8 @@ def count(request):
 
 @login_required
 def token(request):
-    uToken = Token.objects.get_or_create(user=request.user)
-    return render(request, 'graphs/token.html', {'token': uToken[0].key})
+    u_token = Token.objects.get_or_create(user=request.user)
+    return render(request, 'graphs/token.html', {'token': u_token[0].key})
 
 
 @login_required
@@ -51,20 +50,11 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     http_method_names = ['get', 'head', 'options']
 
-class WordCountFilter(filters.FilterSet):
-    class Meta:
-        model = WordCount
-        fields = {
-            'date': ['gt']
-        }
-
 
 class WordCountViewSet(viewsets.ModelViewSet):
     queryset = WordCount.objects.all()
     serializer_class = WordCountSerializer
     permission_classes = permissions.IsAuthenticatedOrReadOnly,
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_class = WordCountFilter
 
     def create(self, request):
         serializer = WordCountSerializer(data=request.data)
@@ -74,3 +64,4 @@ class WordCountViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
