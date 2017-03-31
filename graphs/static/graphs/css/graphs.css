@@ -8,3 +8,7 @@
 .radio_group label {
     display: block;
 }
+
+.radios {
+    margin-left: 2rem;
+}
